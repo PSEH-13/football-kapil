@@ -18,12 +18,12 @@ public class FootballService {
 	private LeagueService leagueService;
 
 	public TeamStanding findStandingOfATeam(String countryName, String leagueName, String teamName) {
-
+		TeamStanding teamStandingPosition = new TeamStanding();
 		String countryId = countryService.getCountryIdByName(countryName);
-		
+
 		String leagueId = leagueService.getLeagueIdByCountryIdAndLeagueName(countryId, leagueName);
-		TeamStanding teamStandingPosition = standingService.getTeamStandingPostion(leagueId, teamName);
-		
+		teamStandingPosition = standingService.getTeamStandingPostion(leagueId, teamName);
+
 		teamStandingPosition.setCountryId(countryId);
 		return teamStandingPosition;
 

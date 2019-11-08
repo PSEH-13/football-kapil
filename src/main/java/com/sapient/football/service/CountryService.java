@@ -16,7 +16,6 @@ public class CountryService {
 	
 	public List<Country> getCountries() {
 		return countryRepository.getAllCountries();
-		
 	}
 	
 	

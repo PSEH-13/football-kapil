@@ -1,5 +1,8 @@
 package com.sapient.football.service;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -8,9 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.sapient.football.model.TeamStanding;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.when;
+import junit.framework.Assert;
 
 
 @RunWith(SpringRunner.class)
@@ -39,14 +40,10 @@ public class FootballServiceTest {
     	when(leagueService.getLeagueIdByCountryIdAndLeagueName(any(String.class), any(String.class))).thenReturn("148");
     	when(standingService.getTeamStandingPostion(any(String.class), any(String.class))).thenReturn(teamStandingPosition);
     	
-    	footballService.findStandingOfATeam("England", "Premier League", "Liverpool")
+    	TeamStanding teamStanding =  footballService.findStandingOfATeam("England", "Premier League", "Liverpool");
+    	
+    	Assert.assertSame(teamStandingPosition.getOverallLeaguePosition(), teamStanding.getOverallLeaguePosition());
     	
     	
     }
-	@Test
-	public void standingOfAteamPositionTest() {
-		footballService.findStandingOfATeam("England", "Premier League", "Liverpool");
-		
-	}
-
 }
